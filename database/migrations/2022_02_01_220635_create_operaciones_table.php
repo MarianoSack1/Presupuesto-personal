@@ -20,6 +20,7 @@ class CreateOperacionesTable extends Migration
             $table->integer('monto');
             $table->date('fecha');
             $table->string('tipo');
+    
         });
     }
 

@@ -22,5 +22,3 @@ Route::get('/', function () {
 
 //NO FUNCIONO POST,PUT,PATCH
 // Route::resource('operaciones', OperacionesController::class);
-Route::get('operaciones/balance', [OperacionesController::class , 'balance']
-)->name('operaciones.balance');

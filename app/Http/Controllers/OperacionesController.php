@@ -17,11 +17,21 @@ class OperacionesController extends Controller
      */
     public function index()
     {
+        $totalEgreso = DB::table('Operaciones')
+        ->where('tipo', 'egreso')
+        ->sum("monto");
+
+        $totalIngreso = DB::table('Operaciones')
+                ->where('tipo', 'ingreso')
+                ->sum("monto");
+
+        $balance= $totalIngreso -$totalEgreso;
         //ultimos 5 registros
         $operaciones = Operaciones::latest()
         ->take(10)
         ->get();
-        return view('operaciones.index')->with('operaciones',$operaciones);
+        
+        return view('operaciones.index')->with('operaciones',$operaciones)->with('balance' ,$balance);
     }
 
 
@@ -43,9 +53,18 @@ class OperacionesController extends Controller
      */
     public function store(StoreOperacionesRequest $request)
     {   
+        
 
+        
+        // $operaciones = new Operaciones();
+        // $operaciones->concepto=$request->get("concepto");
+        // $operaciones->monto=$request->get("monto");
+        // $operaciones->fecha=$request->get("fecha");
+        // $operaciones->tipo=$request->get("tipo");
+        // $operaciones->balance=$balance;
         Operaciones::create($request -> all());
 
+        // $operaciones->save();
         return redirect('/api/operaciones');
         
     }
@@ -104,10 +123,17 @@ class OperacionesController extends Controller
 
     public function balance()
     {
-         $total = DB::table('Operaciones')->sum("monto");
-      
+        $totalEgreso = DB::table('Operaciones')
+                        ->where('tipo', 'egreso')
+                        ->sum("monto");
+
+        $totalIngreso = DB::table('Operaciones')
+                        ->where('tipo', 'ingreso')
+                        ->sum("monto");
         
-        return $total;
+        $balance= $totalIngreso -$totalEgreso;
+        return view('operaciones.index')->with('balance',$balance);
+
     }
 
 
