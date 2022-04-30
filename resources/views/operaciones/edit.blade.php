@@ -2,7 +2,7 @@
 
 @section('contenido')
 <h2 class="bg-primary text-white text-center p-3">Editar registro</h2>
-<form action="/api/operaciones/{{$operacion->id}}" method="POST" class="mt-4">
+<form action="/api/operaciones/{{$operacion->id}}" method="POST" class="mt-0">
     <!-- action=ruta a donde van los datos -->
     @csrf
     @method('PUT')

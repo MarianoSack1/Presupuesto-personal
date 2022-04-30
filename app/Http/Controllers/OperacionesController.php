@@ -26,6 +26,7 @@ class OperacionesController extends Controller
                 ->sum("monto");
 
         $balance= $totalIngreso -$totalEgreso;
+       
         //ultimos 5 registros
         $operaciones = Operaciones::latest()
         ->take(10)
@@ -54,17 +55,14 @@ class OperacionesController extends Controller
     public function store(StoreOperacionesRequest $request)
     {   
         
-
-        
-        // $operaciones = new Operaciones();
-        // $operaciones->concepto=$request->get("concepto");
-        // $operaciones->monto=$request->get("monto");
-        // $operaciones->fecha=$request->get("fecha");
-        // $operaciones->tipo=$request->get("tipo");
-        // $operaciones->balance=$balance;
+        // $request->validate([
+        //     'concepto' => 'required',
+        //     'monto' => 'required',
+        //     'fecha' => 'required',
+        //     'tipo' => 'required',
+        // ]);
         Operaciones::create($request -> all());
 
-        // $operaciones->save();
         return redirect('/api/operaciones');
         
     }
@@ -78,6 +76,7 @@ class OperacionesController extends Controller
     public function show($id)
     {
         $operaciones = Operaciones::find($id);
+   
         return $operaciones;
     }
 

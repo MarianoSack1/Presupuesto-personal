@@ -1,9 +1,9 @@
 @extends('layouts.plantillaBase')
 
 @section('contenido')
-<h2 class="bg-primary text-white text-center p-3">Crear registro</h2>
+<!-- <h2 class="bg-primary text-white text-center p-3">Crear registro</h2>
 <form action="/api/operaciones" method="POST" class="mt-4">
-    <!-- action=ruta a donde van los datos -->
+    
     @csrf
     <div class="mb-3">
         <label for="" class="form-label text-primary">Concepto</label>
@@ -29,6 +29,6 @@
     </div>
     <a href="/api/operaciones" class="btn btn-secondary" tabindex="5">Cancelar</a>
     <button type="submit" class="btn btn-primary" tabindex="6">Guardar</button>
-</form>
+</form> -->
 
 @endsection
