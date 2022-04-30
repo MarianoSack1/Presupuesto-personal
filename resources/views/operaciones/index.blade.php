@@ -64,7 +64,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label text-primary">Monto</label>
-                    <input type="number" step="any" class="form-control" name="monto" id="monto" tabindex="2">
+                    <input type="number" step="any" range="100" class="form-control" name="monto" id="monto" tabindex="2">
                 </div>
 
                 <div class="mb-3">

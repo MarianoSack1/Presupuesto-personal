@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class OperacionesController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -55,12 +56,12 @@ class OperacionesController extends Controller
     public function store(StoreOperacionesRequest $request)
     {   
         
-        // $request->validate([
-        //     'concepto' => 'required',
-        //     'monto' => 'required',
-        //     'fecha' => 'required',
-        //     'tipo' => 'required',
-        // ]);
+        $request->validate([
+            'concepto' => 'required|regex:([a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+)',
+            'monto' => 'required|integer|min:0',
+            'fecha' => 'required',
+            'tipo' => 'required',
+        ]);
         Operaciones::create($request -> all());
 
         return redirect('/api/operaciones');
@@ -101,6 +102,13 @@ class OperacionesController extends Controller
      */
     public function update(UpdateOperacionesRequest $request, $id)
     {
+        $request->validate([
+            'concepto' => 'required|regex:([a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+)',
+            'monto' => 'required|integer|min:0',
+            'fecha' => 'required',
+            'tipo' => 'required',
+        ]);
+        
         $operacion= Operaciones::findOrFail($id);
         $operacion->update($request->all());
         return redirect('/api/operaciones');
